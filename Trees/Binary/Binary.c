@@ -47,3 +47,13 @@ Arv balanceada(int n) {
     r->dir = balanceada(n_dir);
     return r;
 }
+
+
+Arv aleatoria(int n) {
+    if (n == 0) return NULL;
+    Arv r = malloc(sizeof(struct arv));
+    r->item = rand() % 100; // valor aleatório
+    r->esq = aleatoria(n - 1);
+    r->dir = aleatoria(n - 1);
+    return r;
+}

@@ -5,7 +5,7 @@ int main() {
 
     srand(time(NULL));
    
-    exibe(aleatoria(3),0);
+    exibe(balanceada(9),0);
 
 
     return 0; 
