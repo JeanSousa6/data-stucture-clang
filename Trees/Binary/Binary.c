@@ -31,3 +31,8 @@ void exibe(Arv A,int n) {
 
 }
 
+Arv completa(int h) {
+    if( h==0 ) return NULL;
+    return arv(completa(h-1), rand()%100, completa(h-1));
+}
+
