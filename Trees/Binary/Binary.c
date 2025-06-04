@@ -36,3 +36,14 @@ Arv completa(int h) {
     return arv(completa(h-1), rand()%100, completa(h-1));
 }
 
+Arv balanceada(int n) {
+    if (n == 0) return NULL;
+    int x = rand() % 100; // valor aleatório
+    int n_esq = n / 2;
+    int n_dir = n - n_esq - 1;
+    Arv r = malloc(sizeof(struct arv));
+    r->item= x;
+    r->esq = balanceada(n_esq);
+    r->dir = balanceada(n_dir);
+    return r;
+}

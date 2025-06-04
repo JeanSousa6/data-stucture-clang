@@ -4,8 +4,9 @@
 int main() {
 
     srand(time(NULL));
-    Arv A = completa(3);
-    exibe(A,0);
+   
+    exibe(balanceada(9),0);
+
 
     return 0; 
 }
