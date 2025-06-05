@@ -106,8 +106,21 @@ int folhas(Arv A){
 }
 
 
+int altura(Arv A){
+    if(A == NULL) return 0; 
+    if(A->esq > A->dir) return 1 + altura(A->esq); 
+    else return 1 + altura(A->dir); 
+}
+
+Arv clone(Arv A){
+    if(A == NULL) return NULL;
+    return arv(clone(A->esq), A->item, clone(A->dir));
+} 
 
 
-
+int pertence(Item x, Arv A){
+    if(A == NULL) return 0;
+    return A->item == x || pertence(x, A->esq) || pertence(x, A->dir);
+}
 
 
