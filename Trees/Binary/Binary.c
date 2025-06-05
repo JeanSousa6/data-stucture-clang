@@ -22,7 +22,7 @@ Arv n = malloc(sizeof(struct arv));
 }
 
 
-void exibe(Arv A,int n) {
+void exibe(Arv A, int n) {
     
     if( A==NULL ) return;
     exibe(A->dir,n+1);
@@ -52,8 +52,62 @@ Arv balanceada(int n) {
 Arv aleatoria(int n) {
     if (n == 0) return NULL;
     Arv r = malloc(sizeof(struct arv));
-    r->item = rand() % 100; // valor aleatório
-    r->esq = aleatoria(n - 1);
-    r->dir = aleatoria(n - 1);
+    int x = rand() % 100;
+    r->item = x; 
+    r->esq=balanceada(n - 1); 
+    r->dir=balanceada(n - 1); 
+
+    
     return r;
 }
+
+
+Arv nova_aleatoria(int n) {
+    if (n == 0) return NULL; 
+
+    Arv r = malloc(sizeof(struct arv));
+  
+    r->item = rand() % 100; 
+
+    int nos_restantes = n - 1; 
+
+    int num_esq = 0;
+    if (nos_restantes > 0) {
+        num_esq = rand() % (nos_restantes + 1); // rand() % (max_val + 1) para incluir max_val
+    } else {
+        num_esq = 0; 
+    }
+    
+    int num_dir = nos_restantes - num_esq; // O restante vai para a direita
+
+    r->esq = nova_aleatoria(num_esq); // Constrói recursivamente a subárvore esquerda
+    r->dir = nova_aleatoria(num_dir); // Constrói recursivamente a subárvore direita
+
+    return r;
+
+}
+
+
+int nos(Arv A){
+    if(A == NULL) return 0;
+    return 1 + nos(A->esq) + nos(A->dir);  
+}
+
+
+int soma(Arv A){
+    if(A == NULL) return 0;
+    return A->item + soma(A->esq) + soma(A->dir);
+}
+
+int folhas(Arv A){
+   if(A == NULL) return 0;
+   if(A->esq == NULL &&  A->dir == NULL) return 1;
+   return folhas(A->esq) + folhas(A->dir);
+}
+
+
+
+
+
+
+
