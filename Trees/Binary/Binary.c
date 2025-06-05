@@ -123,4 +123,24 @@ int pertence(Item x, Arv A){
     return A->item == x || pertence(x, A->esq) || pertence(x, A->dir);
 }
 
+void preOrdem(Arv A){
+    if(A == NULL) return;
+    printf("%d ", A->item);
+    preOrdem(A->esq); 
+    preOrdem(A->dir); 
+}
 
+
+void emOrdem(Arv A){
+    if(A == NULL) return;
+    emOrdem(A->esq); 
+    printf("%d ", A->item);
+    emOrdem(A->dir); 
+}
+
+void posOrdem(Arv A){
+    if(A == NULL) return;
+    posOrdem(A->esq); 
+    posOrdem(A->dir); 
+    printf("%d ", A->item);
+}
